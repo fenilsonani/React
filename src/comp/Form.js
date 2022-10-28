@@ -25,15 +25,20 @@ export default function Formf(props) {
     const Copy = () => {
         navigator.clipboard.writeText(text);
     }
+    const Rmextra = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+    }
     return (
-        <div>
+        <div style={{color:props.mode==='light'?'black':'white'}}>
             <div class="mb-3">
                 <h1 for="exampleFormControlTextarea1" class="form-h1">{props.data}</h1>
-                <textarea class="form-control" value={text} onChange={onChangeHandel} id="exampleFormControlTextarea1" rows="10"></textarea>
+                <textarea class="form-control" value={text} style={{backgroundColor:props.mode==='light'?'white':'white'}} onChange={onChangeHandel} id="exampleFormControlTextarea1" rows="10"></textarea>
                 <button className='btn btn-primary mt-2 mx-1' onClick={ToUpperCase}>Conver To Uppercase</button>
                 <button className='btn btn-primary mt-2 mx-1' onClick={ToLowerCase}>Conver To LowerCase</button>
                 <button className='btn btn-primary mt-2 mx-1' onClick={Clear}>Clear Text</button>
                 <button className='btn btn-primary mt-2 mx-1' onClick={Copy}>Copy</button>
+                <button className='btn btn-primary mt-2 mx-1' onClick={Rmextra}>Remove Extra Space</button>
             </div>
             <div className=''>
                 <h1>Your text summary</h1>
