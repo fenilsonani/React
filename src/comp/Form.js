@@ -1,33 +1,37 @@
 import React, { useState } from 'react'
-import './form.css';
 
 export default function Formf(props) {
-    const [text, setText] = useState("Enter text here");
+    const [text, setText] = useState("");
     // setText("Enter Your Data here");
     const ToUpperCase = () => {
         // alert("Uppercase button clicked");
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlerts("Converted to Uppercase", "success");
     }
     const ToLowerCase = () => {
         // alert("Uppercase button clicked");
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlerts("Converted to Lowercase", "success");
     }
     const Clear = () => {
         // alert("Uppercase button clicked");
         // let newText = text.toLowerCase();
         setText("");
+        props.showAlerts("Text Cleared", "success");
     }
     const onChangeHandel = (event) => {
         setText(event.target.value);
     }
     const Copy = () => {
         navigator.clipboard.writeText(text);
+        props.showAlerts("Text Copied", "success");
     }
     const Rmextra = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlerts("Extra Spaces Removed", "success");
     }
     return (
         <div style={{color:props.mode==='light'?'black':'white'}}>
@@ -45,7 +49,7 @@ export default function Formf(props) {
                 <p>{text.split(" ").length} Number Of Word In the input {text.length} Cahracters In input</p>
                 <p>{0.008*text.split(" ").length} Minutes To Read This</p>
                 <h2>Preview</h2>
-                <p className='fenil-sonani'>{text}</p>
+                <p className='fenil-sonani'>{text.length>0?text:`First Enter Something`}</p>
             </div>
         </div>
     )
